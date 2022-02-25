@@ -2,7 +2,7 @@ import { Redirect } from 'wouter'
 import { useStoreState } from 'easy-peasy'
 import { FullScreenLoading } from '@/components'
 
-const WithNoAuth = ({ children }) => {
+const WithNoAuthWrapper = ({ children }) => {
   const auth = useStoreState(state => state.auth)
 
   if (auth.loading) {
@@ -16,8 +16,8 @@ const WithNoAuth = ({ children }) => {
   )
 }
 
-export default WithNoAuth
-
-export const withNoAuthWrapper = Component => {
-  return <WithNoAuth><Component /></WithNoAuth>
+export const withNoAuth = Component => props => {
+  return <WithNoAuthWrapper><Component {...props} /></WithNoAuthWrapper>
 }
+
+export default withNoAuth

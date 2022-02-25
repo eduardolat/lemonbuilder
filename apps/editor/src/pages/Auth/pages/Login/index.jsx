@@ -9,7 +9,7 @@ import {
 } from '@mui/material'
 import { LoadingButton } from '@mui/lab'
 import { onFormSubmit } from '@/helpers'
-import { withNoAuthWrapper } from '@/hoc/WithNoAuth'
+import withNoAuth from '@/hoc/withNoAuth'
 import axios from 'axios'
 import { toast } from 'react-toastify'
 import { useStoreActions } from 'easy-peasy'
@@ -115,4 +115,4 @@ const AuthLogin = () => {
   )
 }
 
-export default () => withNoAuthWrapper(AuthLogin)
+export default withNoAuth(AuthLogin)

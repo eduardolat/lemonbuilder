@@ -1,4 +1,5 @@
 import { Editor } from '@/components'
+import withAuth from '@/hoc/WithAuth'
 
 const EditorPage = () => {
   return (
@@ -8,4 +9,4 @@ const EditorPage = () => {
   )
 }
 
-export default EditorPage
+export default withAuth(EditorPage)
