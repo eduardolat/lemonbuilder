@@ -9,9 +9,13 @@ const firebaseAuth = {
   }),
   editorTopBarHeight: 50,
 
-  editorSidebarWidth: 200,
+  editorSidebarWidth: 250,
   editorSidebarHeight: computed((state) => {
     return state.windowHeight - state.editorTopBarHeight
+  }),
+  editorSidebarNavHeight: 50,
+  editorSidebarContentHeight: computed((state) => {
+    return state.editorSidebarHeight - state.editorSidebarNavHeight
   }),
 
   editorCanvasWidth: computed((state) => {

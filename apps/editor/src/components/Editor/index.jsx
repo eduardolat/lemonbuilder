@@ -16,10 +16,29 @@ export const Editor = () => {
         container: '#lemon-editor-canvas',
         height: '100%',
         width: '100%',
-        // storageManager: false,
         panels: { defaults: [] },
+        plugins: ['gjs-blocks-basic'],
         blockManager: { appendTo: '#lemon-editor-blocks' },
-        plugins: ['gjs-blocks-basic']
+        layerManager: { appendTo: '#lemon-editor-layers' },
+        styleManager: { appendTo: '#lemon-editor-styles' },
+        traitManager: { appendTo: '#lemon-editor-traits' },
+        deviceManager: {
+          devices: [
+            {
+              name: 'Mobile',
+              width: '320px',
+              widthMedia: '480px'
+            },
+            {
+              name: 'Tablet',
+              width: '700px',
+              widthMedia: '768px'
+            },
+            {
+              name: 'Desktop'
+            }
+          ]
+        }
       })
     )
   }, [])

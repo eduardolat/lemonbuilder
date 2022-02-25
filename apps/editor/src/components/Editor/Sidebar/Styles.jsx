@@ -1,14 +1,14 @@
 import { Box, Typography } from '@mui/material'
 
-const Blocks = ({ editor }) => {
+const Styles = () => {
   return (
     <Box>
       <Box sx={{ p: 1 }}>
-        <Typography variant='h6' component='h2'>Blocks</Typography>
+        <Typography variant='h6' component='h2'>Styles</Typography>
       </Box>
 
       <Box
-        id='lemon-editor-blocks'
+        id='lemon-editor-styles'
         sx={{
           height: '100%',
           width: '100%'
@@ -18,4 +18,4 @@ const Blocks = ({ editor }) => {
   )
 }
 
-export default Blocks
+export default Styles
