@@ -4,7 +4,8 @@ import {
   TextField,
   Paper,
   Box,
-  Grid
+  Grid,
+  Typography
 } from '@mui/material'
 import { LoadingButton } from '@mui/lab'
 import { onFormSubmit } from '@/helpers'
@@ -71,6 +72,11 @@ const AuthLogin = () => {
             }}
           >
             <Box component='form' onSubmit={handleSubmit} sx={{ mt: 1 }}>
+              <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+                <img src='/lemon.png' alt='Lemon Builder Logo' width='80px' />
+                <Typography variant='h5' component='h1'>Sign in to Lemon Builder</Typography>
+              </Box>
+
               <TextField
                 margin='normal'
                 fullWidth

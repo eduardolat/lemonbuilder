@@ -15,8 +15,7 @@ import '@/styles/general.css'
 
 // GrapesJS Style
 import 'grapesjs/dist/css/grapes.min.css'
-import 'grapesjs-preset-webpage/dist/grapesjs-preset-webpage.min.css'
-import 'grapesjs-preset-webpage/dist/grapesjs-preset-webpage.min.js'
+import 'grapesjs-blocks-basic/dist/grapesjs-blocks-basic.min.js'
 import '@/styles/editor.css'
 //
 
