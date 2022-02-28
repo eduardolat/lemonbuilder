@@ -8,14 +8,14 @@ const router = express.Router()
 
 router.post(
   '/login',
-  body('username').notEmpty(),
+  body('email').notEmpty(),
   body('password').notEmpty(),
   handleValidation,
   loginAction
 )
 
 router.get('/verify', authenticated, (req, res) => {
-  res.json({ ok: true })
+  res.json({ ok: true, authUser: req.authUser })
 })
 
 export default router

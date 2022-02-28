@@ -1,19 +1,35 @@
 import jwt from 'jsonwebtoken'
+import bcrypt from 'bcrypt'
+import UserModel from '../../models/userModel.js'
+import dayjs from 'dayjs'
 
 const loginAction = async (req, res) => {
-  const { username, password } = req.body
+  const { email, password } = req.body
 
-  if (
-    username !== process.env.SERVER_ACCESS_USERNAME ||
-    password !== process.env.SERVER_ACCESS_PASSWORD
-  ) {
+  const user = await UserModel.findOne({ email })
+
+  if (user == null) {
     return res.status(401).json({
-      error: 'Invalid username or password'
+      error: 'Invalid email or password'
     })
   }
 
+  const isPasswordValid = await bcrypt.compare(password, user.password)
+  if (isPasswordValid === false) {
+    return res.status(401).json({
+      error: 'Invalid email or password'
+    })
+  }
+
+  const jwtPayload = {
+    _id: user._id,
+    name: user.name,
+    email: user.email,
+    role: user.role,
+    createdAt: dayjs(user.createdAt).toISOString()
+  }
   const token = jwt.sign(
-    { username },
+    jwtPayload,
     process.env.SERVER_JWT_SECRET,
     {
       algorithm: 'HS256',
@@ -21,7 +37,7 @@ const loginAction = async (req, res) => {
     }
   )
 
-  res.send({ payload: { username }, token })
+  res.send({ payload: jwtPayload, token })
 }
 
 export default loginAction

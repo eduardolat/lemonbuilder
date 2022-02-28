@@ -1,10 +1,10 @@
 /**
- * Middleware to authentiate requests using JWT token
+ * Middleware to authentiate requests using JWT token, can verify one role
  */
 
 import jwt from 'jsonwebtoken'
 
-const authenticated = async (req, res, next) => {
+const authenticated = (role) => async (req, res, next) => {
   const bearerToken = req.headers.authorization
 
   if (bearerToken == null) {
@@ -14,18 +14,25 @@ const authenticated = async (req, res, next) => {
   const token = bearerToken.replace('Bearer ', '').replace('bearer ', '')
 
   try {
-    jwt.verify(
+    const decoded = jwt.verify(
       token,
       process.env.SERVER_JWT_SECRET,
       {
         algorithms: ['HS256']
       }
     )
+    req.authUser = decoded
   } catch (err) {
     return res.status(401).json({
       error: 'Unauthorized',
       message: err.message
     })
+  }
+
+  if (role != null) {
+    if (req.authUser.role !== role) {
+      return res.status(401).json({ error: 'Unauthorized' })
+    }
   }
 
   next()

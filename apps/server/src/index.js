@@ -9,12 +9,18 @@ const __dirname = path.dirname(__filename)
 dotenv.config({ path: path.join(__dirname, '../../../.env') })
 
 import express from 'express'
+import mongoose from 'mongoose'
 import cors from 'cors'
 import helmet from 'helmet'
 import morgan from 'morgan'
 import router from './controllers/router.js'
 
 const bootstrap = async () => {
+  // Connect to MongoDB
+  await mongoose.connect(process.env.SERVER_MONGODB_URI)
+  console.log('Connected to MongoDB')
+  //
+
   const app = express()
 
   app.use(cors())
@@ -39,4 +45,4 @@ const bootstrap = async () => {
   })
 }
 
-bootstrap()
+bootstrap().catch(err => console.log(err))
