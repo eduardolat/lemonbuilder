@@ -6,7 +6,13 @@ export default async function createProject (req, res) {
     description: req.body.description
   })
 
-  await project.save()
+  try {
+    await project.save()
+  } catch (error) {
+    return res.status(500).json({
+      error: error.message
+    })
+  }
 
   res.status(201).json(project)
 }

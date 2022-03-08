@@ -10,8 +10,16 @@ import getProject from './getProject.action.js'
 import isValidWebhook from '../../helpers/isValidWebhook.js'
 import setUsers from './setUsers.action.js'
 import setWebhooks from './setWebhooks.action.js'
+import pages from './pages/router.js'
 
 const router = express.Router()
+
+router.use(
+  '/:projectId/pages',
+  param('projectId').isMongoId(),
+  handleValidation,
+  pages
+)
 
 router.get(
   '/',
@@ -61,5 +69,10 @@ router.post(
   authenticated('admin'),
   setWebhooks
 )
+
+// TODO: Add project update endpoint
+// TODO: Add project deletion endpoint
+// TODO: Add project webhooks execution endpoint
+// TODO: Add project metadata update endpoint
 
 export default router

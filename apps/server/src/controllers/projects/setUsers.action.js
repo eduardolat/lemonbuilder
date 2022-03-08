@@ -11,7 +11,13 @@ export default async function setUsers (req, res) {
 
   project.users = req.body.users
 
-  await project.save()
+  try {
+    await project.save()
+  } catch (error) {
+    return res.status(500).json({
+      error: error.message
+    })
+  }
 
   res.json(project)
 }

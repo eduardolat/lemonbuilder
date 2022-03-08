@@ -21,4 +21,9 @@ router.post('/initial-user',
   createInitialUser
 )
 
+// TODO: Add user creation endpoint
+// TODO: Add user deletion endpoint
+// TODO: Add user update endpoint
+// TODO: Add user password update endpoint
+
 export default router

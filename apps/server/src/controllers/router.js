@@ -9,4 +9,8 @@ router.use('/auth', auth)
 router.use('/users', users)
 router.use('/projects', projects)
 
+// TODO: Add file upload endpoint
+// TODO: Add file deletion endpoint
+// TODO: Add file listing endpoint
+
 export default router

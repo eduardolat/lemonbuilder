@@ -1,7 +1,9 @@
 import mongoose from 'mongoose'
 
+// TODO: Add project metadata
+
 const schema = new mongoose.Schema({
-  name: String,
+  name: { type: String, required: true },
   description: String,
   webhooks: [{
     method: {
@@ -31,6 +33,8 @@ schema.pre('save', function (next) {
   this.updatedAt = Date.now()
   return next()
 })
+
+// TODO: Delete all pages on project deletion
 
 const ProjectModel = mongoose.model('Project', schema)
 export default ProjectModel

@@ -11,7 +11,13 @@ export default async function setWebhooks (req, res) {
 
   project.webhooks = req.body.webhooks
 
-  await project.save()
+  try {
+    await project.save()
+  } catch (error) {
+    return res.status(500).json({
+      error: error.message
+    })
+  }
 
   res.json(project)
 }

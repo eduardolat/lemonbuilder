@@ -18,4 +18,6 @@ router.get('/verify', authenticated, (req, res) => {
   res.json({ ok: true, authUser: req.authUser })
 })
 
+// TODO: Add user password reset endpoint
+
 export default router
