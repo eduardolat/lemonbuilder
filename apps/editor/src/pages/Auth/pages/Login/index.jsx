@@ -20,14 +20,14 @@ const AuthLogin = () => {
   const setToken = useStoreActions(actions => actions.auth.setToken)
 
   const handleSubmit = onFormSubmit(async (data) => {
-    const { username, password } = data
+    const { email, password } = data
 
     setLoading(true)
 
     try {
       const { data } = await axios.post(
         `${import.meta.env.VITE_API_ENDPOINT}/auth/login`,
-        { username, password }
+        { email, password }
       )
 
       window.localStorage.setItem('token', data.token)
@@ -80,11 +80,11 @@ const AuthLogin = () => {
               <TextField
                 margin='normal'
                 fullWidth
-                id='username'
-                label='Username'
-                name='username'
-                type='username'
-                autoComplete='username'
+                id='email'
+                label='Email'
+                name='email'
+                type='email'
+                autoComplete='email'
                 autoFocus
                 required
               />
